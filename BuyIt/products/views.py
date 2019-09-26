@@ -11,6 +11,17 @@ def Product_List(request):
     }
     return render(request,"product_list.html",context)
 
+# def Product_Slug_Detail(request):
+#     queryset = Product.objects.all()
+#     context = {
+#         'product': queryset
+#     }
+#     return render(request,"product_detail.html",context)
+
+class Product_Slug_Detail(DetailView):
+    queryset = Product.objects.all()
+    template_name = "product_detail.html"
+
 def Product_Detail(request, pk=None, *args, **kwargs):
     # instance = get_object_or_404(Product, pk=pk)
     # MODEL MANAGER
