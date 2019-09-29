@@ -1,8 +1,8 @@
 import random
 import os
 from django.db import models
-# from django.db.models.signals import pre_save
-# from .utils import unique_pk_generator
+from django.db.models.signals import pre_save
+from .utils import unique_slug_generator
 
 def get_file_ext(filepath):
     base_name = os.path.basename(filepath)
@@ -35,7 +35,7 @@ class ProductManager(models.Manager):
 
 class Product(models.Model):
     title       = models.CharField(max_length=50,null=True)
-    slug        = models.SlugField(blank=True)
+    slug        = models.SlugField(blank=True,unique=True)
     description = models.TextField()
     price       = models.DecimalField(decimal_places=2,max_digits=30)
     image       = models.ImageField(upload_to=upload_image_path,null=True,blank=True)
@@ -47,12 +47,15 @@ class Product(models.Model):
     #      return "products/{pk}/".format(pk=pk)
     #     return "products/{pk}/".format(pk=pk)
 
+    def get_absolute_url(self):
+        return "{slug}".format(slug=self.slug)
+
     def __str__(self):
         return self.title
 
 
-# def pre_save_create_pk(sender,instance,*args,**kwargs):
-#     if not instance.product_id:
-#         instance.product_id = unique_pk_generator(instance)
+def pre_save_create_slug(sender,instance,*args,**kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
 
-# pre_save.connect(pre_save_create_pk,sender=Product)
+pre_save.connect(pre_save_create_slug,sender=Product)

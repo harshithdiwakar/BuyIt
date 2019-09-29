@@ -1,4 +1,3 @@
 {% for obj in product_list %}
-<!-- <a href="{{ obj.get_absolute_url }}"></a> -->
-{{ obj.title }}<br>
+<a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a><br>
 {% endfor %}
