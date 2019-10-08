@@ -20,9 +20,8 @@ from django.conf.urls.static import static
 from .views import index
 from products.views import (
     Product_List,
-    # Product_Detail,
+    Product_Detail,
     ProductFeaturedDetailView,
-    Product_Slug_Detail,
     ProductFeaturedListView
     )
 
@@ -31,10 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/',Product_List),
     path('featured/',ProductFeaturedListView.as_view()),
-    # re_path('products/(?P<pk>\d+)/',Product_Detail),
-    re_path('products/(?P<slug>[\w-]+)/',Product_Slug_Detail.as_view()),
-    # re_path('products/(?P<slug>[\w-]+)/',Product_Detail.as_view()),
-    # re_path('products/(?P<slug>[\w-]+)/',Product_Detail),
+    re_path('products/(?P<pk>\d+)/',Product_Detail),
     re_path('featured/(?P<pk>\d+)/',ProductFeaturedDetailView.as_view())
 ]
 

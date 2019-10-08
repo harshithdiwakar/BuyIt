@@ -35,17 +35,13 @@ class ProductManager(models.Manager):
 
 class Product(models.Model):
     title       = models.CharField(max_length=50,null=True)
-    slug        = models.SlugField(blank=True,unique=True)
+    slug        = models.SlugField(blank=True,unique=True,primary_key=True)
     description = models.TextField()
     price       = models.DecimalField(decimal_places=2,max_digits=30)
     image       = models.ImageField(upload_to=upload_image_path,null=True,blank=True)
     featured    = models.BooleanField(default=False)
     
     objects = ProductManager()
-
-    # def get_absolute_url(pk):
-    #      return "products/{pk}/".format(pk=pk)
-    #     return "products/{pk}/".format(pk=pk)
 
     def get_absolute_url(self):
         return "{slug}".format(slug=self.slug)
