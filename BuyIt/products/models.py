@@ -55,3 +55,14 @@ def pre_save_create_slug(sender,instance,*args,**kwargs):
         instance.slug = unique_slug_generator(instance)
 
 pre_save.connect(pre_save_create_slug,sender=Product)
+
+class Shop(models.Model):
+    category = models.CharField(max_length=10)
+    slug     = models.SlugField(blank=True,unique=True,primary_key=True)
+
+    def __str__(self):
+        return self.category
+
+# class product_category(models.Model):
+#     sub_category = models.CharField(max_length=20,null=True)
+#     category     = models.ForeignKey(shop,on_delete=models.CASCADE)
