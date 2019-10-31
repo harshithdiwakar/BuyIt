@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from django.http import Http404
 from django.views.generic import ListView,DetailView
-from .models import Product
+from .models import Product, Shop, Product_Category
 
 
 def Product_List(request):
@@ -43,3 +43,17 @@ class ProductFeaturedDetailView(DetailView):
     # def get_queryset(self,*args, **kwargs):
     #     request = self.request
     #     return Product.objects.featured()
+
+def Shop_List(request):
+    queryset = Shop.objects.all()
+    context = {
+        'shop_list': queryset
+    }
+    return render(request,"shop.html",context)
+
+def Category_List(request):
+    queryset = Product_Category.objects.all()
+    context = {
+        'category_list': queryset
+    }
+    return render(request,"category.html",context)

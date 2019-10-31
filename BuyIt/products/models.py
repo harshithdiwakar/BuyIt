@@ -40,7 +40,9 @@ class Product(models.Model):
     price       = models.DecimalField(decimal_places=2,max_digits=30)
     image       = models.ImageField(upload_to=upload_image_path,null=True,blank=True)
     featured    = models.BooleanField(default=False)
-    
+    category    = models.ForeignKey('Product_Category',on_delete=models.CASCADE,default='all')
+    # shop        = models.ForeignKey('Shop',on_delete=models.CASCADE,default='all')
+
     objects = ProductManager()
 
     def get_absolute_url(self):
@@ -63,6 +65,12 @@ class Shop(models.Model):
     def __str__(self):
         return self.category
 
-# class product_category(models.Model):
-#     sub_category = models.CharField(max_length=20,null=True)
-#     category     = models.ForeignKey(shop,on_delete=models.CASCADE)
+    def get_absolute_url(self):
+        return "{slug}".format(slug=self.slug)
+
+class Product_Category(models.Model):
+    sub_category = models.CharField(primary_key=True,max_length=20)
+    category     = models.ForeignKey(Shop,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.sub_category

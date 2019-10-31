@@ -22,7 +22,9 @@ from products.views import (
     Product_List,
     Product_Detail,
     ProductFeaturedDetailView,
-    ProductFeaturedListView
+    ProductFeaturedListView,
+    Shop_List,
+    Category_List
     )
 
 urlpatterns = [
@@ -30,6 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/',Product_List),
     path('featured/',ProductFeaturedListView.as_view()),
+    path('shop/',Shop_List),
+    path('shop/category/',Category_List,name='category'),
     re_path('products/(?P<pk>\d+)/',Product_Detail),
     re_path('featured/(?P<pk>\d+)/',ProductFeaturedDetailView.as_view())
 ]
