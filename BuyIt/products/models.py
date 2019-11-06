@@ -41,9 +41,11 @@ class Product(models.Model):
     image       = models.ImageField(upload_to=upload_image_path,null=True,blank=True)
     featured    = models.BooleanField(default=False)
     category    = models.ForeignKey('Product_Category',on_delete=models.CASCADE,default='all')
-    # shop        = models.ForeignKey('Shop',on_delete=models.CASCADE,default='all')
 
     objects = ProductManager()
+
+    class Meta:
+        verbose_name_plural = "Product"
 
     def get_absolute_url(self):
         return "{slug}".format(slug=self.slug)
@@ -59,18 +61,23 @@ def pre_save_create_slug(sender,instance,*args,**kwargs):
 pre_save.connect(pre_save_create_slug,sender=Product)
 
 class Shop(models.Model):
-    category = models.CharField(max_length=10)
-    slug     = models.SlugField(blank=True,unique=True,primary_key=True)
+    category      = models.CharField(max_length=10,unique=True)
+    shop_slug     = models.SlugField(blank=True,unique=True)
+
+    class Meta:
+        verbose_name_plural = "Shop"
 
     def __str__(self):
         return self.category
 
-    def get_absolute_url(self):
-        return "{slug}".format(slug=self.slug)
 
 class Product_Category(models.Model):
-    sub_category = models.CharField(primary_key=True,max_length=20)
-    category     = models.ForeignKey(Shop,on_delete=models.CASCADE)
+    sub_category    = models.CharField(max_length=20)
+    category_slug   = models.SlugField(primary_key=True,blank=True)
+    category        = models.ForeignKey(Shop,on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Category"
 
     def __str__(self):
         return self.sub_category

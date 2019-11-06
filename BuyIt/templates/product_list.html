@@ -1,3 +1,6 @@
 {% for obj in product_list %}
-<a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a><br>
+<a href="{{ obj.get_absolute_url }}">
+    <img src="{{ obj.image.url }}" class="img-fluid" height="300vh" width="200vw"><br>
+    {{ obj.title }}
+</a><br>
 {% endfor %}

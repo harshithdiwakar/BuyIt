@@ -1,4 +1,6 @@
-{{ product.title }} <br>
-{{ product.description }} <br>
-{{ product.price }} <br>
-<img src="{{ product.image.url }}" class="img-fluid"> 
+{% for obj in detail_list %}
+<h1>{{ obj.title }}</h1>
+<h4>{{ obj.description }}</h4>
+<h2>{{ obj.price }}</h2>
+<img src="{{ obj.image.url }}">
+{% endfor %}

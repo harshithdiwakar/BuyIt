@@ -1,1 +1,4 @@
-<h1>{{title}}</h1>
+<h1>BuyIt</h1>
+{% for obj in shop_list %}
+<a href="{{ obj.shop_slug }}">{{ obj.category }}</a><br>
+{% endfor %}
