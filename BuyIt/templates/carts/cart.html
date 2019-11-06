@@ -1,0 +1,30 @@
+{% if empty %}
+
+<h1>{{ empty_message }}</h1>
+
+{% else %}
+<table>
+    <tfoot>
+        <tr>
+            <td>
+                {{ cart.total }}
+            </td>
+        </tr>
+    </tfoot>
+    {% for item in cart.products.all %}
+    <tr>
+        <td>
+            {{ item }}
+        </td>
+        <td>
+            {{ item.price }}
+        </td>
+        <td>
+            <a href="{% url "update" item.slug %}">
+                Remove?
+            </a>
+        </td>
+    </tr>
+    {% endfor %}   
+</table>
+{% endif %}
