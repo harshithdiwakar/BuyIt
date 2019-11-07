@@ -15,23 +15,11 @@ def upload_image_path(instance,filename):
     final_filename = '{new_filename}{ext}'.format(new_filename=new_filename,ext=ext)
     return "products/product_images/{final_filename}".format(final_filename=final_filename)
 
-class ProductQueryset(models.query.QuerySet):
-    def featured(self):
-        return self.filter(featured=True)
-
-class ProductManager(models.Manager):
-    def get_queryset(self):
-        return ProductQueryset(self.model, using=self._db)
-
-    def featured(self):
-        return self.get_queryset().filter(featured=True)
-
-
-    def get_by_id(self,id):
-        qs = self.get_queryset().filter(id=id)
-        if qs.count() == 1:
-            return qs.first()
-        return None
+def upload_shop_image_path(instance,filename):
+    new_filename = random.randint(1,1000)
+    name,ext = get_file_ext(filename)
+    final_filename = '{new_filename}{ext}'.format(new_filename=new_filename,ext=ext)
+    return "shop/shop_images/{final_filename}".format(final_filename=final_filename)
 
 class Product(models.Model):
     title       = models.CharField(max_length=50,null=True)
@@ -42,8 +30,6 @@ class Product(models.Model):
     featured    = models.BooleanField(default=False)
     category    = models.ForeignKey('Product_Category',on_delete=models.CASCADE,default='all')
 
-    objects = ProductManager()
-
     class Meta:
         verbose_name_plural = "Product"
 
@@ -53,16 +39,17 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
-
 def pre_save_create_slug(sender,instance,*args,**kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
 
 pre_save.connect(pre_save_create_slug,sender=Product)
 
+
 class Shop(models.Model):
     category      = models.CharField(max_length=10,unique=True)
     shop_slug     = models.SlugField(blank=True,unique=True)
+    image         = models.ImageField(upload_to=upload_shop_image_path,null=True,blank=True)
 
     class Meta:
         verbose_name_plural = "Shop"

@@ -46,37 +46,3 @@ def Shop_List(request):
         'shop_list': queryset
     }
     return render(request,"index.html",context)
-
-
-# def Product_List(request):
-#     queryset = Product.objects.all()
-#     context = {
-#         'product_list': queryset
-#     }
-#     return render(request,"product_list.html",context)
-
-
-# def Product_Detail(request, pk=None, *args, **kwargs):
-#     # instance = get_object_or_404(Product, pk=pk)
-#     # MODEL MANAGER
-#     # instance = Product.objects.get_by_id(pk)
-#     # print(instance)
-#     try:
-#         instance = Product.objects.get(pk=pk)
-#     except Product.DoesNotExist:
-#         raise Http404("Product doesn't exist")
-
-#     context = {
-#         'product': instance
-#     }
-#     return render(request,"product_detail.html",context)
-
-
-# class ProductFeaturedListView(ListView):
-#     queryset = Product.objects.all().featured()
-#     template_name = "product_list.html"
-
-
-# class ProductFeaturedDetailView(DetailView):
-#     queryset = Product.objects.all().featured()
-#     template_name = "product_detail.html"

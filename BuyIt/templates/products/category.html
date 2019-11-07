@@ -1,3 +1,41 @@
-{% for obj in category_list %}
-<a href="{{ obj.category_slug }}">{{ obj.sub_category }}</a><br>
-{% endfor %}
+{% extends "base.html" %}
+{% load static %}
+{% block base_head %}
+<link rel="stylesheet" href='{% static "css/custom_category.css" %}'>
+{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-3" style="text-align: center;">
+        {% for obj in category_list %}
+            <a href="{{ obj.category_slug }}">
+                <p>{{ obj.sub_category }}</p>
+            </a><br>
+        {% endfor %}
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-4" style="padding: 0%;"><img src='{% static "img/men.jpg" %}' style="width:100%"></div>
+                <div class="col-4" style="padding: 0%;"><img src='{% static "img/women.jpg" %}' style="width:100%"></div>
+                <div class="col-4" style="padding: 0%;"><img src='{% static "img/kids.jpg" %}' style="width:100%"></div>
+            </div>
+            <div class="row">
+                <div class="col-4" style="padding: 0%;"><img src='{% static "img/s1.jpg" %}' style="width:100%"></div>
+                <div class="col-4" style="padding: 0%;"><img src='{% static "img/s2.jpg" %}' style="width:100%"></div>
+                <div class="col-4" style="padding: 0%;"><img src='{% static "img/s3.jpg" %}' style="width:100%"></div>
+            </div>
+            <!-- <div class="images"> 
+                <div class="column">
+                    <div class="col-4"><img src='{% static "img/men.jpg" %}' style="width:100%"></div>
+                    <div class="col-4"><img src='{% static "img/women.jpg" %}' style="width:100%"></div>
+                    <div class="col-4"><img src='{% static "img/kids.jpg" %}' style="width:100%"></div>
+                    <img src="img/img12.jpg" style="width:100%">
+                    <img src="img/img8.jpg" style="width:100%">
+                    <img src="img/img10.jpg" style="width:100%">
+                    <img src="img/img15.jpg" style="width:100%">
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>
+{% endblock %}

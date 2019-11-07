@@ -1,30 +1,38 @@
+{% extends "base.html" %}
+{% block base_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block content %}
 {% if empty %}
-
 <h1>{{ empty_message }}</h1>
-
 {% else %}
-<table>
-    <tfoot>
-        <tr>
-            <td>
-                {{ cart.total }}
-            </td>
-        </tr>
-    </tfoot>
-    {% for item in cart.products.all %}
-    <tr>
-        <td>
-            {{ item }}
-        </td>
-        <td>
-            {{ item.price }}
-        </td>
-        <td>
-            <a href="{% url "update" item.slug %}">
-                Remove?
-            </a>
-        </td>
-    </tr>
-    {% endfor %}   
-</table>
+<div class="container">
+    <table class="table table-bordered">
+        <thead align="center">
+            <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody align="center">
+            {% for item in cart.products.all %}
+            <tr>
+            <td><img src="{{ item.image.url }}" width="90px" height="135px"></td>
+            <td>{{ item }} <a href='{% url "update" item.slug %}'><i class="fa fa-trash-o"></i></a></td>
+            <td>&#8377; {{ item.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot align="center">
+            <tr>
+                <td colspan="2">Total Price</td>
+                <td>&#8377; {{ cart.total }}</td>
+            </tr>
+        </tfoot>
+    </table>
+    <a href="#" class="btn btn-secondary btn-lg btn-block">Checkout <i class="fa fa-angle-right"></i></a><br>
+</div>
 {% endif %}
+{% endblock %}

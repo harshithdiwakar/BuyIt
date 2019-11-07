@@ -1,4 +1,32 @@
-<h1>BuyIt</h1>
-{% for obj in shop_list %}
-<a href="{{ obj.shop_slug }}">{{ obj.category }}</a><br>
-{% endfor %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div id="demo" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src='{% static "img/c1.jpg" %}' alt="First">
+        </div>
+        <div class="carousel-item">
+            <img src='{% static "img/c2.jpg" %}' alt="Second">
+        </div>
+        <div class="carousel-item">
+            <img src='{% static "img/c3.jpg" %}' alt="Third">
+        </div>
+    </div>
+</div>
+<br><br><br>
+<div class="container">
+    <div class="row">
+        {% for obj in shop_list %}
+        <div class="col">
+            {% include "cards.html" with instance=obj %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
