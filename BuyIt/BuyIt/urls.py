@@ -17,11 +17,16 @@ from django.contrib import admin
 from django.urls import path,re_path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import login_page,register_page,logout_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/',login_page,name="login"),
+    path('signup/',register_page,name="register"),
+    path('logout/',logout_page,name="logout"),
     path('',include("products.urls")),
-    path('cart/',include("carts.urls"))
+    path('cart/',include("carts.urls")),
+    path('wishlist/',include("wishlists.urls"))
 ]
 
 if settings.DEBUG:

@@ -8,10 +8,11 @@ def slug(request,slug):
     shops = [s.shop_slug for s in Shop.objects.all()]
     if slug in shops:
         category = Product_Category.objects.filter(category__shop_slug = slug) 
-        print(category)
+        shop = Shop.objects.filter(shop_slug = slug)
         queryset = category
         context = {
-            'category_list': queryset
+            'category_list': queryset,
+            'shop_list': shop
         }
         return render(request,"products/category.html",context)
 

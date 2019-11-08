@@ -9,8 +9,8 @@
             {% endif %}        
             <div class="card-body">
             <h1 class="card-title">{{ instance.title }}</h1>
-            <h1 class="card-text">&#8377; {{ instance.price }}</h1>
-            <a href="#" class="btn btn-danger">Wishlist</a>
+            <h1 class="card-text">&#8377; {{ instance.price }}</h1><br>
+            <a href='{% url "list_update" obj.slug %}' class="btn btn-danger">Wishlist</a>
             <a href='{% url "update" obj.slug %}' class="btn btn-success">Add to Cart</a>
         </div>
     </a>

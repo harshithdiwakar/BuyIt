@@ -53,7 +53,7 @@ def update_cart(request,slug):
     
     request.session['total_items'] = cart.products.count()
     print(request.session['total_items'])
-    cart.total = cart_total
+    cart.total = (1.15 * cart_total)
     cart.save()
 
 

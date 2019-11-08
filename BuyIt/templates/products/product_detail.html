@@ -11,8 +11,8 @@
             <h1>{{ obj.title }}</h1>
             <h4>{% lorem %}</h4>
             <h2>&#8377; {{ obj.price }}</h2>
-            <a href="{% url "update" obj.slug %}" class="btn btn-success">Add to Cart</a>
-            <a href="#" class="btn btn-danger">Wishlist</a>
+            <a href='{% url "update" obj.slug %}' class="btn btn-success">Add to Cart</a>
+            <a href='{% url "list_update" obj.slug %}' class="btn btn-danger">Wishlist</a>
         </div>
     </div>
 </div>

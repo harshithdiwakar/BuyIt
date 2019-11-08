@@ -21,14 +21,15 @@ def upload_shop_image_path(instance,filename):
     final_filename = '{new_filename}{ext}'.format(new_filename=new_filename,ext=ext)
     return "shop/shop_images/{final_filename}".format(final_filename=final_filename)
 
+
 class Product(models.Model):
-    title       = models.CharField(max_length=50,null=True)
-    slug        = models.SlugField(blank=True,unique=True,primary_key=True)
+    title = models.CharField(max_length=50,null=True)
+    slug = models.SlugField(blank=True,unique=True,primary_key=True)
     description = models.TextField()
-    price       = models.DecimalField(decimal_places=2,max_digits=30)
-    image       = models.ImageField(upload_to=upload_image_path,null=True,blank=True)
-    featured    = models.BooleanField(default=False)
-    category    = models.ForeignKey('Product_Category',on_delete=models.CASCADE,default='all')
+    price = models.DecimalField(decimal_places=2,max_digits=30)
+    image = models.ImageField(upload_to=upload_image_path,null=True,blank=True)
+    featured = models.BooleanField(default=False)
+    category = models.ForeignKey('Product_Category',on_delete=models.CASCADE,default='all')
 
     class Meta:
         verbose_name_plural = "Product"
@@ -47,9 +48,14 @@ pre_save.connect(pre_save_create_slug,sender=Product)
 
 
 class Shop(models.Model):
-    category      = models.CharField(max_length=10,unique=True)
-    shop_slug     = models.SlugField(blank=True,unique=True)
-    image         = models.ImageField(upload_to=upload_shop_image_path,null=True,blank=True)
+    category = models.CharField(max_length=10,unique=True)
+    shop_slug = models.SlugField(blank=True,unique=True)
+    image = models.ImageField(upload_to=upload_shop_image_path,null=True,blank=True)
+    display = models.ImageField(upload_to=upload_shop_image_path,null=True,blank=True)
+    image1 = models.ImageField(upload_to=upload_shop_image_path,null=True,blank=True)
+    image2 = models.ImageField(upload_to=upload_shop_image_path,null=True,blank=True)
+    image3 = models.ImageField(upload_to=upload_shop_image_path,null=True,blank=True)
+    image4 = models.ImageField(upload_to=upload_shop_image_path,null=True,blank=True)
 
     class Meta:
         verbose_name_plural = "Shop"
@@ -59,9 +65,10 @@ class Shop(models.Model):
 
 
 class Product_Category(models.Model):
-    sub_category    = models.CharField(max_length=20)
-    category_slug   = models.SlugField(primary_key=True,blank=True)
-    category        = models.ForeignKey(Shop,on_delete=models.CASCADE)
+    sub_category = models.CharField(max_length=20)
+    category_slug = models.SlugField(primary_key=True,blank=True)
+    category = models.ForeignKey(Shop,on_delete=models.CASCADE)
+
 
     class Meta:
         verbose_name_plural = "Category"
