@@ -1,22 +1,13 @@
-a:hover {
+a p:hover {
     text-decoration: none;
 }
-.images {
-    display: -ms-flexbox; 
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
+
+.col-10 .gallery {
+    overflow: hidden;
+    width: 50%;
+    height: auto;
     padding: 0;
 } 
-.column {
-    -ms-flex: 25%; 
-    flex: 25%;
-    padding: 0;
-}
-    .column img {
-    margin-top: 8px;
-    vertical-align: middle;
-}
-.col-4 {
-    padding: 0;
+img:hover {
+    transition: scale(2.0) ease;
 }

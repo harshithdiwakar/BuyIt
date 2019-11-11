@@ -39,11 +39,11 @@ def slug(request,slug):
         print(context)
         return render(request,"products/product_detail.html",context)
     
-    return HttpResponse(f"Check again")
+    raise Http404("Product does not exist")
 
 def Shop_List(request):
     queryset = Shop.objects.all()
     context = {
         'shop_list': queryset
     }
-    return render(request,"index.html",context)
+    return render(request,"home/index.html",context)
