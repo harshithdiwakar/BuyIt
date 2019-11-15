@@ -26,6 +26,7 @@ urlpatterns = [
     path('logout/',logout_page,name="logout"),
     path('',include("products.urls")),
     path('cart/',include("carts.urls")),
+    path('cart/',include("addresses.urls")),
     path('wishlist/',include("wishlists.urls"))
 ]
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import Cart
+from orders.models import Order
 from products.models import Product
 
 def cart_view(request):
@@ -11,8 +12,17 @@ def cart_view(request):
     
     if the_id:
         cart = Cart.objects.get(id = the_id)
+        cart_created = False
+
+        order_obj = None
+        # if cart_created or cart.products.count() == 0:
+        #     pass
+        # else:
+        order_obj,new_order_obj = Order.objects.get_or_create(cart=cart)
+
         context = {
-            "cart":cart
+            "cart":cart,
+            "order":order_obj,
         }
     else:
         empty_message = "Cart is Empty!"

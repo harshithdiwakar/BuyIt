@@ -1,13 +1,7 @@
-a p:hover {
+.anchor:hover{
     text-decoration: none;
+    color: black;
 }
-
-.col-10 .gallery {
-    overflow: hidden;
-    width: 50%;
-    height: auto;
-    padding: 0;
-} 
-img:hover {
-    transition: scale(2.0) ease;
+.anchor {
+    color: black;
 }

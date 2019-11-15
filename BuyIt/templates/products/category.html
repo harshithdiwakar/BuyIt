@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-2" style="text-align: center; padding: 0;">
     {% for obj in category_list %}
-        <a href="{{ obj.category_slug }}">
+        <a class = "anchor" href="{{ obj.category_slug }}">
             <p style="margin-bottom: 0;">{{ obj.sub_category }}</p>
         </a><br>
     {% endfor %}

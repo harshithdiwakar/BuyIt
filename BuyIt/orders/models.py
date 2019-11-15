@@ -1,6 +1,7 @@
 from django.db import models
 from carts.models import Cart
 from .utils import unique_order_generator
+import math
 from django.db.models.signals import pre_save, post_save
 
 ORDER_STATUS_CHOICES = (
@@ -28,7 +29,8 @@ class Order(models.Model):
     def update_total(self):
         shipping_total = self.shipping_total
         cart_total = self.cart.total
-        total = cart_total + shipping_total
+        total = math.fsum([cart_total, shipping_total])
+        total = format(total, '.2f')
         self.order_total = total
         self.save()
         return total

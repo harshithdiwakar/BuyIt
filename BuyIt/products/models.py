@@ -25,10 +25,9 @@ def upload_shop_image_path(instance,filename):
 class Product(models.Model):
     title = models.CharField(max_length=50,null=True)
     slug = models.SlugField(blank=True,unique=True,primary_key=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     price = models.DecimalField(decimal_places=2,max_digits=30)
     image = models.ImageField(upload_to=upload_image_path,null=True,blank=True)
-    featured = models.BooleanField(default=False)
     category = models.ForeignKey('Product_Category',on_delete=models.CASCADE,default='all')
 
     class Meta:
