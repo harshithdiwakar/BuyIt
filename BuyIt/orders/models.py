@@ -12,8 +12,6 @@ ORDER_STATUS_CHOICES = (
 
 
 class Order(models.Model):
-    # billing_profile 
-    # addresses
     order_id = models.CharField(max_length=50,blank=True)
     cart = models.ForeignKey(Cart,on_delete=models.CASCADE)
     status = models.CharField(max_length=120,default='created',choices=ORDER_STATUS_CHOICES)

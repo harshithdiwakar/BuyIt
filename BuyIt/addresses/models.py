@@ -1,5 +1,9 @@
 from django.db import models
 from billings.models import BillingProfile
+from django.conf import settings
+from django.db.models.signals import pre_save
+
+User = settings.AUTH_USER_MODEL
 
 class Address(models.Model):
     billing_profile = models.ForeignKey(BillingProfile,on_delete=models.CASCADE)
@@ -14,3 +18,9 @@ class Address(models.Model):
 
     def __str__(self):
         return str(self.billing_profile)
+
+#     def create_billing_user(sender,instance,created,*args,**kwargs):
+#         if not created:
+
+
+# pre_save.connect(create_billing_user,sender=User)

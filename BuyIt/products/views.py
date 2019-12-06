@@ -19,24 +19,20 @@ def slug(request,slug):
     products = [p.category_slug for p in Product_Category.objects.all()]
     if slug in products:
         items = Product.objects.filter(category__category_slug = slug)
-        print(items)
         queryset = items
         context = {
             "product_list": queryset
         }
-        print(context)
         return render(request,"products/product_list.html",context)
 
 
     product = [p.slug for p in Product.objects.all()]
     if slug in product:
         details = Product.objects.filter(slug = slug)
-        print(details)
         queryset = details
         context = {
             "detail_list": queryset
         }
-        print(context)
         return render(request,"products/product_detail.html",context)
     
     raise Http404("Product does not exist")

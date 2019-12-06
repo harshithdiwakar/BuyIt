@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #dae0e5;">
     <div class="container">
-        <a class="navbar-brand" href='{% url "shop" %}'>BUYIT</a>
+        <a class="navbar-brand" href='{% url "shop" %}' style="letter-spacing: 5px;">BUYIT</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,7 +14,7 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{% url 'cart' %}">Cart</a>
                         <a class="dropdown-item" href='{% url "wishlist" %}'>Wishlist</a>
-                        <a class="dropdown-item" href="#">Orders</a>
+                        <!-- <a class="dropdown-item" href="#">Orders</a> -->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                     </div>

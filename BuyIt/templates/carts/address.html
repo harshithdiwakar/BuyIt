@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container">
     <center>
-        <form method="POST">{% csrf_token %}
+        <form method="POST" action='{% url "shop" %}'>{% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class="btn btn-success">Submit</button>
         </form>

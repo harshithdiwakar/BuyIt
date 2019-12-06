@@ -9,9 +9,7 @@ def address(request):
     context = {
         "form":form,
     }
-    # instance = form
     if form.is_valid():
-        # instance.billing_profile = request.user.username
         form.save()
         context['form'] = AddressForm()
         return redirect("cart")
